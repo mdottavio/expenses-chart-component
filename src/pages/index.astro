@@ -1,0 +1,11 @@
+---
+import Balance from "../components/Balance.astro";
+import Layout from "../layouts/Layout.astro";
+import data from "../data.json";
+---
+
+<Layout title="Welcome to Astro.">
+  <Balance week={data} balance={921.48} thisMonth={478.33} result={"+2.4%"} />
+</Layout>
+
+<style></style>

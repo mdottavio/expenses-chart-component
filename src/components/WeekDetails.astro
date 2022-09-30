@@ -1,0 +1,19 @@
+---
+const { week } = Astro.props;
+export type Day = {
+  day: string;
+  amount: number;
+};
+---
+
+<div class="wrapper">
+  <h3>Spending - Last 7 days</h3>
+  {
+    week.map(({ day, amount }: Day) => (
+      <div class="day">
+        <div class="bar" />
+        <div class="day_name">{day}</div>
+      </div>
+    ))
+  }
+</div>

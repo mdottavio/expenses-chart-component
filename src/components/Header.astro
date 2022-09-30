@@ -1,0 +1,50 @@
+---
+const { balance } = Astro.props;
+---
+
+<header>
+  <div class="balance">
+    My balance <span>${balance}</span>
+  </div>
+  <div class="icon">
+    <i></i>
+    <i></i>
+  </div>
+</header>
+<style lang="scss">
+  header {
+    background-color: var(--soft-red);
+    color: var(--very-pale-orange);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    .balance {
+      display: flex;
+      flex-direction: column;
+      font-size: var(--text-font-size);
+      color: var(--cream);
+      & span {
+        font-size: var(--title-font-size);
+        font-weight: 700;
+        margin-top: 5px;
+      }
+    }
+    .icon {
+      display: flex;
+      flex-direction: row-reverse;
+      i {
+        border: 1px solid #fff;
+        display: block;
+        height: 28px;
+        width: 28px;
+        border-radius: 28px;
+        &:first-child {
+          border-color: var(--dark-brown);
+          background-color: var(--dark-brown);
+          margin-left: -16px;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+const { thisMonth, result } = Astro.props;
+---
+
+<footer>
+  <div class="total">
+    Total this mounth
+    <h4>${thisMonth}</h4>
+  </div>
+  <div class="result">
+    {result}
+    <p>from last month</p>
+  </div>
+</footer>
