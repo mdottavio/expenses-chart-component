@@ -18,5 +18,11 @@ const { week, balance, thisMonth, result } = Astro.props;
     display: flex;
     flex-direction: column;
     width: 330px;
+    .content {
+      padding: var(--content-padding);
+      background: var(--very-pale-orange);
+      border-radius: var(--content-radius);
+      margin-top: var(--content-padding);
+    }
   }
 </style>
