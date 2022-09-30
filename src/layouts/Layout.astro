@@ -43,12 +43,23 @@ const { title } = Astro.props;
       html {
         font-family: "Raleway", sans-serif;
         background-color: var(--cream);
-        font-size: 18px;
       }
       body {
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      .tippy-box[data-theme="default"] {
+        background: var(--dark-brown);
+        color: var(--very-pale-orange);
+        border-radius: 3px;
+        font-size: var(--text-font-size);
+        padding: 3px;
+        word-wrap: break-word;
+      }
+      .tippy-arrow {
+        background: red;
+        display: none;
       }
     </style>
   </body>

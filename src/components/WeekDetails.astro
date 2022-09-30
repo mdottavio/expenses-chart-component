@@ -1,19 +1,81 @@
 ---
+import type { Day } from "./models";
+import Tooltips from "@julian_cataldo/astro-tooltips/Tooltips.astro";
 const { week } = Astro.props;
-export type Day = {
-  day: string;
-  amount: number;
-};
+const columnHeight = 130;
+let maxValue = [...week].sort((first: Day, second: Day) => {
+  if (first.amount < second.amount) {
+    return 1;
+  }
+  if (first.amount > second.amount) {
+    return -1;
+  }
+  return 0;
+})[0];
+
+const getColumnHeight = (amount: number) =>
+  Math.floor((amount * 100) / columnHeight);
 ---
 
 <div class="wrapper">
   <h3>Spending - Last 7 days</h3>
-  {
-    week.map(({ day, amount }: Day) => (
-      <div class="day">
-        <div class="bar" />
-        <div class="day_name">{day}</div>
-      </div>
-    ))
-  }
+  <div class="week" style={{ height: `${columnHeight}px` }}>
+    {
+      week.map(({ day, amount }: Day) => (
+        <div class:list={["day", { maxBar: amount === maxValue.amount }]}>
+          <div
+            class="bar"
+            style={{ height: `${getColumnHeight(amount)}px` }}
+            title={`$${amount}`}
+            data-tooltip-placement="top"
+          />
+          <div class="day_name">{day}</div>
+        </div>
+      ))
+    }
+  </div>
 </div>
+
+<style lang="scss">
+  :weekdetails {
+    --border-radiux: 3px;
+  }
+  h3 {
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--dark-brown);
+  }
+  .week {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--medium-brown);
+    padding-bottom: 24px;
+    .day {
+      width: 32px;
+      font-size: var(--text-font-size);
+      color: var(--medium-brown);
+      text-align: center;
+      .bar {
+        background: var(--soft-red);
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 7px;
+      }
+      &.maxBar {
+        .bar {
+          background: var(--cyan);
+        }
+      }
+      .tooltip {
+        background: var(--dark-brown);
+        color: var(--very-pale-orange);
+        font-size: var(--text-font-size);
+        border-radius: 3px;
+        padding: 4px;
+      }
+    }
+  }
+</style>
