@@ -4,8 +4,13 @@ import Layout from "../layouts/Layout.astro";
 import data from "../data.json";
 ---
 
-<Layout title="Welcome to Astro.">
-  <Balance week={data} balance={921.48} thisMonth={478.33} result={"+2.4%"} />
+<Layout title="Expenses chart component">
+  <Balance
+    week={data.week}
+    balance={data.total}
+    totalMonth={data.totalMonth}
+    result={data.result}
+  />
 </Layout>
 
 <style></style>

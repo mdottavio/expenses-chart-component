@@ -2,14 +2,14 @@
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import WeekDetails from "./WeekDetails.astro";
-const { week, balance, thisMonth, result } = Astro.props;
+const { week, balance, totalMonth, result } = Astro.props;
 ---
 
 <main>
   <Header balance={balance} />
   <div class="content">
-    <WeekDetails week={week} />
-    <Footer thisMonth={thisMonth} result={result} />
+    <WeekDetails week={week} totalMonth={totalMonth} />
+    <Footer totalMonth={totalMonth} result={result} />
   </div>
 </main>
 

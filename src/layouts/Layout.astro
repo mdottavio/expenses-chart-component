@@ -22,7 +22,9 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <div class="wrapper">
+      <slot />
+    </div>
     <style is:global>
       :root {
         --dark-brown: hsl(25, 47%, 15%);
@@ -33,28 +35,35 @@ const { title } = Astro.props;
         --soft-red: hsl(10, 79%, 65%);
         --cyan: hsl(186, 34%, 60%);
 
-        --title-font-size: 18px;
-        --text-font-size: 10px;
-
         --content-padding: 15px;
         --content-radius: 10px;
       }
 
-      html {
+      html,
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 18px;
+      }
+      body {
         font-family: "Raleway", sans-serif;
         background-color: var(--cream);
       }
-      body {
+      .wrapper {
+        padding: 0;
+        margin: 0;
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
       }
       .tippy-box[data-theme="default"] {
         background: var(--dark-brown);
         color: var(--very-pale-orange);
         border-radius: 3px;
-        font-size: var(--text-font-size);
-        padding: 3px;
+        font-size: 0.9em;
+        padding: 0.1em;
         word-wrap: break-word;
       }
       .tippy-arrow {

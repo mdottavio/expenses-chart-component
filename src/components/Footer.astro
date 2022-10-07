@@ -1,14 +1,56 @@
 ---
-const { thisMonth, result } = Astro.props;
+const { totalMonth, result } = Astro.props;
 ---
 
 <footer>
   <div class="total">
-    Total this mounth
-    <h4>${thisMonth}</h4>
+    <p>Total this mounth</p>
+    <h4>${totalMonth}</h4>
   </div>
   <div class="result">
-    {result}
+    <h4>{result}</h4>
     <p>from last month</p>
   </div>
 </footer>
+
+<style lang="scss">
+  footer {
+    --small-font: 0.6em;
+    --medium-font: 0.8em;
+    --large-font: 1.2em;
+    padding-top: 24px;
+    color: var(--medium-brown);
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+
+    h4,
+    p {
+      color: var(--dark-brown);
+      margin: 0;
+      padding: 10px 0 0 0;
+    }
+    .total {
+      p {
+        color: var(--medium-brown);
+        font-size: var(--small-font);
+      }
+      h4 {
+        font-size: var(--large-font);
+      }
+    }
+
+    .result {
+      text-align: right;
+      p {
+        font-size: var(--small-font);
+        color: var(--medium-brown);
+        padding: 0.3em 0;
+      }
+      h4 {
+        font-size: var(--medium-font);
+      }
+    }
+  }
+</style>
