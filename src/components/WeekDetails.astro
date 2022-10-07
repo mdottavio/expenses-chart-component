@@ -1,23 +1,15 @@
 ---
 import type { Day } from "./models";
 import Tooltips from "@julian_cataldo/astro-tooltips/Tooltips.astro";
-const { week, totalMonth } = Astro.props;
+const { week } = Astro.props;
 const columnHeight = 130;
-let maxValue = [...week].sort((first: Day, second: Day) => {
-  if (first.amount < second.amount) {
-    return 1;
-  }
-  if (first.amount > second.amount) {
-    return -1;
-  }
-  return 0;
-})[0];
 
 const totalWeek = [...week].reduce((acc, cur) => Number(acc + cur.amount), [0]);
 const getColumnHeight = (amount: number) => {
   const hPercentaje = (amount * columnHeight) / totalWeek;
   return Math.floor((hPercentaje * columnHeight) / 100);
 };
+const today = new Date().toDateString().split(" ")[0].toLocaleLowerCase();
 ---
 
 <div class="wrapper">
@@ -25,7 +17,7 @@ const getColumnHeight = (amount: number) => {
   <div class="week" style={{ height: `${columnHeight}px` }}>
     {
       week.map(({ day, amount }: Day) => (
-        <div class:list={["day", { maxBar: amount === maxValue.amount }]}>
+        <div class:list={["day", { today: day === today }]}>
           <div
             class="bar"
             style={{ height: `${getColumnHeight(amount)}px` }}
@@ -66,7 +58,7 @@ const getColumnHeight = (amount: number) => {
           cursor: pointer;
           margin-bottom: 7px;
         }
-        &.maxBar {
+        &.today {
           .bar {
             background: var(--cyan);
           }
