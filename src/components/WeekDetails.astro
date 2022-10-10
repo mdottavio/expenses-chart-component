@@ -1,6 +1,5 @@
 ---
 import type { Day } from "./models";
-import Tooltips from "@julian_cataldo/astro-tooltips/Tooltips.astro";
 const { week } = Astro.props;
 const columnHeight = 130;
 
@@ -18,12 +17,8 @@ const today = new Date().toDateString().split(" ")[0].toLocaleLowerCase();
     {
       week.map(({ day, amount }: Day) => (
         <div class:list={["day", { today: day === today }]}>
-          <div
-            class="bar"
-            style={{ height: `${getColumnHeight(amount)}px` }}
-            title={`$${amount}`}
-            data-tooltip-placement="top"
-          />
+          <div class="barTooltip">{`$${amount}`}</div>
+          <div class="bar" style={{ height: `${getColumnHeight(amount)}px` }} />
           <div class="day_name">{day}</div>
         </div>
       ))
@@ -52,6 +47,24 @@ const today = new Date().toDateString().split(" ")[0].toLocaleLowerCase();
         font-size: 0.6em;
         color: var(--medium-brown);
         text-align: center;
+        position: relative;
+        .barTooltip {
+          background: var(--dark-brown);
+          color: var(--very-pale-orange);
+          border-radius: 3px;
+          font-size: 0.9em;
+          word-wrap: break-word;
+          padding: 8px;
+          position: absolute;
+          left: -8px;
+          top: -28px;
+          display: none;
+        }
+        &:hover {
+          .barTooltip {
+            display: block;
+          }
+        }
         .bar {
           background: var(--soft-red);
           border-radius: var(--border-radiux);
